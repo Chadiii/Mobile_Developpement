@@ -21,7 +21,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.HashMap;
-import java.util.HashSet;
+
 
 public class RegisterActivity extends AppCompatActivity {
 
@@ -118,7 +118,7 @@ public class RegisterActivity extends AppCompatActivity {
 
                 }
                 else {
-                    Toast.makeText(RegisterActivity.this, "This " +phone+ "Already exist.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(RegisterActivity.this, "This " +phone+ " Already exist.", Toast.LENGTH_SHORT).show();
                     loadingBar.dismiss();
                     Toast.makeText(RegisterActivity.this, "Please try again using another phone number", Toast.LENGTH_SHORT).show();
 
