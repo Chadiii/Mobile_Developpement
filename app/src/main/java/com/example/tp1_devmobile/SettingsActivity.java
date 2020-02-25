@@ -23,9 +23,10 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.StorageTask;
-import com.mikhaellopez.circularimageview.CircularImageView;
+import de.hdodenhof.circleimageview.CircleImageView;
 import com.squareup.picasso.Picasso;
 import com.theartofdev.edmodo.cropper.CropImage;
 
@@ -33,7 +34,7 @@ import java.util.HashMap;
 
 public class SettingsActivity extends AppCompatActivity {
 
-    private CircularImageView profileImageView;
+    private CircleImageView profileImageView;
     private EditText fullNameEditText, userPhoneEditText, addressEditText;
     private TextView profileChangeTextBtn, closeTextBtn, saveTextButton;
 
@@ -48,7 +49,8 @@ public class SettingsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        profileImageView = (CircularImageView) findViewById(R.id.settings_profile_image);
+        storageProfilePictureRef = FirebaseStorage.getInstance().getReference().child("Profile pictures");
+        profileImageView = findViewById(R.id.settings_profile_image);
         fullNameEditText = (EditText) findViewById(R.id.settings_full_name);
         userPhoneEditText = (EditText) findViewById(R.id.settings_phone_number);
         addressEditText = (EditText) findViewById(R.id.settings_address);
@@ -202,7 +204,7 @@ public class SettingsActivity extends AppCompatActivity {
         }
     }
 
-    private void userInfoDisplay(final CircularImageView profileImageView, final EditText fullNameEditText, final EditText userPhoneEditText, final EditText addressEditText) {
+    private void userInfoDisplay(final CircleImageView profileImageView, final EditText fullNameEditText, final EditText userPhoneEditText, final EditText addressEditText) {
 
         DatabaseReference UsersRef = FirebaseDatabase.getInstance().getReference().child("Users").child(Prevalent.currentOnlineUser.getPhone());
 
