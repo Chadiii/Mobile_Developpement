@@ -57,13 +57,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:elevation="6dp"
-        app:textSize="16dp"
+        app:textSize="16sp"
         app:initialNumber="1"
         app:finalNumber="10"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
         android:layout_below="@+id/product_price_details"
         >
-
     </com.cepheuen.elegantnumberbutton.view.ElegantNumberButton>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -76,11 +76,11 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_margin="15dp"
-        >
+        />
 
 
 
-    </com.google.android.material.floatingactionbutton.FloatingActionButton>
+
 
 
 
