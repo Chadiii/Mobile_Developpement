@@ -61,8 +61,8 @@ public class CartActivity extends AppCompatActivity {
             @Override
             protected void onBindViewHolder(@NonNull CartViewHolder cartViewHolder, int i, @NonNull Cart cart) {
 
-                cartViewHolder.txtProductQuantity.setText(cart.getQuantity());
-                cartViewHolder.txtProductPrice.setText(cart.getPrice());
+                cartViewHolder.txtProductQuantity.setText("Quantity = "+cart.getQuantity());
+                cartViewHolder.txtProductPrice.setText("Price "+cart.getPrice()+ " MAD");
                 cartViewHolder.txtProductName.setText(cart.getPname());
 
             }
@@ -76,6 +76,9 @@ public class CartActivity extends AppCompatActivity {
                 return holder;
             }
         };
+
+        recyclerView.setAdapter(adapter);
+        adapter.startListening();
 
     }
 }
