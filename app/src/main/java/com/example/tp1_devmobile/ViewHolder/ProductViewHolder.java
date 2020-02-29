@@ -1,6 +1,5 @@
 package com.example.tp1_devmobile.ViewHolder;
 
-import android.content.ClipData;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -15,7 +14,7 @@ public class ProductViewHolder extends RecyclerView.ViewHolder implements View.O
 
     public TextView txtProductName, txtProductDescription, txtProductPrice;
     public ImageView imageView;
-    public ItemClickListner listner;
+    public ItemClickListner listener;
 
     public ProductViewHolder(@NonNull View itemView) {
         super(itemView);
@@ -28,13 +27,13 @@ public class ProductViewHolder extends RecyclerView.ViewHolder implements View.O
 
     public void setItemClickListner(ItemClickListner listner){
 
-        this.listner = listner;
+        this.listener = listner;
     }
 
 
     @Override
     public void onClick(View v) {
 
-        listner.onClick(v, getAdapterPosition(), false);
+        listener.onClick(v, getAdapterPosition(), false);
     }
 }
