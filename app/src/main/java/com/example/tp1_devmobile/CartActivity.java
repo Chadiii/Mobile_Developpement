@@ -54,7 +54,7 @@ public class CartActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                txtTotalAmount.setText("Total Price = MAD"+ String.valueOf(overTotalPrice));
+
 
                 Intent intent = new Intent(CartActivity.this, ConfirmFinalOrderActivity.class);
                 intent.putExtra("Total Price", String.valueOf(overTotalPrice));
@@ -67,6 +67,7 @@ public class CartActivity extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+
 
 
         final DatabaseReference cartListRef = FirebaseDatabase.getInstance().getReference().child("Cart List");
@@ -143,8 +144,9 @@ public class CartActivity extends AppCompatActivity {
                         builder.show();
                     }
                 });
-
+                txtTotalAmount.setText("Total Price = MAD "+ String.valueOf(overTotalPrice));
             }
+
 
             @NonNull
             @Override
