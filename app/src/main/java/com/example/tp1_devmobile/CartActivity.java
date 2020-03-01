@@ -1,10 +1,13 @@
 package com.example.tp1_devmobile;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.view.LayoutInflater;
@@ -12,12 +15,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.tp1_devmobile.Model.Cart;
+import com.example.tp1_devmobile.Model.Product;
 import com.example.tp1_devmobile.Prevalent.Prevalent;
 import com.example.tp1_devmobile.ViewHolder.CartViewHolder;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -59,11 +66,64 @@ public class CartActivity extends AppCompatActivity {
         FirebaseRecyclerAdapter<Cart, CartViewHolder> adapter
                 = new FirebaseRecyclerAdapter<Cart, CartViewHolder>(options) {
             @Override
-            protected void onBindViewHolder(@NonNull CartViewHolder cartViewHolder, int i, @NonNull Cart cart) {
+            protected void onBindViewHolder(@NonNull final CartViewHolder cartViewHolder, int i, @NonNull final Cart cart) {
 
                 cartViewHolder.txtProductQuantity.setText("Quantity = "+cart.getQuantity());
                 cartViewHolder.txtProductPrice.setText("Price "+cart.getPrice()+ " MAD");
                 cartViewHolder.txtProductName.setText(cart.getPname());
+
+                cartViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+
+                        CharSequence options[] = new CharSequence[]{
+
+                                "Edit",
+                                "Delete"
+                        };
+
+                        AlertDialog.Builder builder = new AlertDialog.Builder(CartActivity.this);
+                        builder.setTitle("Cart Option");
+
+                        builder.setItems(options, new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+
+                                if( which == 0){
+
+                                    Intent intent = new Intent(CartActivity.this, ProductDetailsActivity.class);
+                                    intent.putExtra("pid", cart.getPid());
+                                    startActivity(intent);
+                                }
+                                if(which == 1){
+
+                                    cartListRef.child("User View")
+                                            .child(Prevalent.currentOnlineUser.getPhone())
+                                            .child("Products")
+                                            .child(cart.getPid())
+                                            .removeValue()
+                                            .addOnCompleteListener(new OnCompleteListener<Void>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<Void> task) {
+
+                                                    if (task.isSuccessful()){
+
+                                                        Toast.makeText(CartActivity.this, "Item removed", Toast.LENGTH_SHORT).show();
+
+                                                        Intent intent = new Intent(CartActivity.this, HomeActivity.class);
+                                                        startActivity(intent);
+                                                    }
+
+                                                }
+                                            });
+
+                                }
+                            }
+                        });
+
+                        builder.show();
+                    }
+                });
 
             }
 
