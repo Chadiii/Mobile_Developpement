@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -50,13 +51,26 @@ public class AdminNewOrdersActivity extends AppCompatActivity {
         FirebaseRecyclerAdapter<AdminOrders, AdminOrdersViewHolder> adapter =
                 new FirebaseRecyclerAdapter<AdminOrders, AdminOrdersViewHolder>(options) {
                     @Override
-                    protected void onBindViewHolder(@NonNull AdminOrdersViewHolder adminOrdersViewHolder, int i, @NonNull AdminOrders adminOrders) {
+                    protected void onBindViewHolder(@NonNull final AdminOrdersViewHolder adminOrdersViewHolder, final int i, @NonNull final AdminOrders adminOrders) {
 
                         adminOrdersViewHolder.userName.setText("Name : " + adminOrders.getName());
                         adminOrdersViewHolder.userPhoneNumber.setText("Phone : " + adminOrders.getPhone());
                         adminOrdersViewHolder.userTotalPrice.setText("Total Amount MAD " + adminOrders.getTotalAmount());
                         adminOrdersViewHolder.userDateTime.setText("Order at : " + adminOrders.getDate() + "  " + adminOrders.getTime());
                         adminOrdersViewHolder.userShippingAddress.setText("Shipping Address : " + adminOrders.getAddress() + ", City : " + adminOrders.getCity());
+
+                        adminOrdersViewHolder.ShowOrdersBtn.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+
+                                String uID = getRef(i).getKey();
+
+                                Intent intent = new Intent(AdminNewOrdersActivity.this, AdminUserProductsActivity.class);
+                                intent.putExtra("uid", uID);
+                                startActivity(intent);
+
+                            }
+                        });
 
                     }
 
