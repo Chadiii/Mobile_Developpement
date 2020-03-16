@@ -46,6 +46,8 @@ public class HomeActivity extends AppCompatActivity
       private RecyclerView recyclerView;
       RecyclerView.LayoutManager layoutManager;
 
+      private String type = "";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -53,7 +55,7 @@ public class HomeActivity extends AppCompatActivity
         setContentView(R.layout.activity_home);
 
         ProductsRef = FirebaseDatabase.getInstance().getReference().child("Products");
-
+        type = getIntent().getExtras().get("Admin").toString();
 
         Paper.init(this);
 
@@ -115,6 +117,18 @@ public class HomeActivity extends AppCompatActivity
                         productViewHolder.txtProductDescription.setText(product.getDescription());
                         productViewHolder.txtProductPrice.setText("Price =  "+ product.getPrice() + "$");
                         Picasso.get().load(product.getImage()).into(productViewHolder.imageView);
+
+                        if(type.equals("Admin")){
+
+
+
+                        }else {
+
+                            Intent intent = new Intent(HomeActivity.this, ProductDetailsActivity.class);
+                            intent.putExtra("pid", product.getPid());
+                            startActivity(intent);
+
+                        }
 
                         productViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
                             @Override
