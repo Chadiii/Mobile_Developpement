@@ -64,6 +64,20 @@
             android:background="@drawable/input_design"
             android:textSize="18dp" />
 
+        <Button
+            android:id="@+id/apply_changes_btn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/product_description_maintain"
+            android:text="Apply Changes"
+            android:textAlignment="center"
+            android:padding="12dp"
+            android:layout_margin="5dp"
+            android:textColor="@android:color/white"
+            android:background="@drawable/buttons"
+            android:textSize="18dp" />
+
+
     </RelativeLayout>
 
 
