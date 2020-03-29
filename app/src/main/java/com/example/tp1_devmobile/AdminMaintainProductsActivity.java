@@ -44,6 +44,7 @@ public class AdminMaintainProductsActivity extends AppCompatActivity {
         price = (EditText) findViewById(R.id.product_price_maintain);
         description = (EditText) findViewById(R.id.product_description_maintain);
         imageView = (ImageView) findViewById(R.id.product_image_maintain);
+        deleteBtn = (Button) findViewById(R.id.delete_product_btn);
 
 
         displaySpecificProductInfo();
@@ -56,6 +57,29 @@ public class AdminMaintainProductsActivity extends AppCompatActivity {
 
             }
         });
+
+        deleteBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                deleteThisProduct();
+            }
+        });
+    }
+
+    private void deleteThisProduct() {
+
+        productsRef.removeValue().addOnCompleteListener(new OnCompleteListener<Void>() {
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+
+                Toast.makeText(AdminMaintainProductsActivity.this, "This Product is removed Successfully", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(AdminMaintainProductsActivity.this, AdminCategoryActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
     }
 
     private void applyChanges() {
