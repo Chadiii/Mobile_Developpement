@@ -5,4 +5,4 @@ the Database associate to this project is secured (for privacy reason), so make 
 
 <h3>DEMO</h3>
 
-<a href="https://youtu.be/dXtg-URWqrI" rel="nofollow"><img src="https://i9.ytimg.com/vi_webp/dXtg-URWqrI/mqdefault.webp?sqp=CJyD3fsF&rs=AOn4CLB2i5xsHEuVetcp-1df24hNkzQ2-Q" alt="Demo Application" data-canonical-src="https://youtu.be/dXtg-URWqrI" style="max-width:100%;"></a>
+<a href="https://youtu.be/dXtg-URWqrI" rel="nofollow"><img src="https://i.ytimg.com/vi/dXtg-URWqrI/hqdefault.jpg?sqp=-oaymwEZCPYBEIoBSFXyq4qpAwsIARUAAIhCGAFwAQ==&rs=AOn4CLB3t3aNcQTuvHkEh9QAmljiwYhO9g" alt="Demo Application" data-canonical-src="https://youtu.be/dXtg-URWqrI" style="max-width:100%;"></a>
